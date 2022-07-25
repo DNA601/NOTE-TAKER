@@ -6,10 +6,8 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
-// Import custom middleware, "cLog"
 
 
-// Middleware for parsing JSON and urlencoded form data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api', api);
@@ -21,7 +19,7 @@ app.get('/notes', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
-// GET Route for feedback page
+// GET Route for note page
 app.get('*', (req, res) =>
     //* is like a wild card entry
     res.sendFile(path.join(__dirname, '/public/index.html'))

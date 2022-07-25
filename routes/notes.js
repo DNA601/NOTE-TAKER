@@ -37,7 +37,7 @@ notes.post('/', (req, res) => {
                 .toString(16)
                 .substring(1);
         }
-        // Obtain existing reviews
+
         fs.readFile('./db/db.json', 'utf8', (err, data) => {
             if (err) {
                 console.error(err);
@@ -45,7 +45,7 @@ notes.post('/', (req, res) => {
                 // Convert string into JSON object
                 const parsedNotes = JSON.parse(data);
 
-                // Add a new review
+
                 parsedNotes.push(newReview);
 
 
