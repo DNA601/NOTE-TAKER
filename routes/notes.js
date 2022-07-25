@@ -1,4 +1,5 @@
 const notes = require('express').Router();
+const { randomUUID } = require('crypto');
 const fs = require('fs');
 notes.get('/', (req, res) => {
     fs.readFile('./db/db.json', 'utf8', (err, data) => {
@@ -27,9 +28,15 @@ notes.post('/', (req, res) => {
         const newReview = {
             title,
             text,
+            id: uuid(),
 
         };
 
+        function uuid() {
+            return Math.floor((1 + Math.random()) * 0x1000)
+                .toString(16)
+                .substring(1);
+        }
         // Obtain existing reviews
         fs.readFile('./db/db.json', 'utf8', (err, data) => {
             if (err) {
